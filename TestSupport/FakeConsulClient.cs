@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Consul;
+using Consul.Filtering;
+using Consul.Interfaces;
 using ConsulRx.UnitTests;
 
 namespace ConsulRx.TestSupport
@@ -226,6 +228,11 @@ namespace ConsulRx.TestSupport
             throw new System.NotImplementedException();
         }
 
+        public Task<QueryResult<string[]>> Datacenters(QueryOptions q, CancellationToken ct = new CancellationToken())
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<WriteResult> Deregister(CatalogDeregistration reg, CancellationToken ct = new CancellationToken())
         {
             throw new System.NotImplementedException();
@@ -274,6 +281,42 @@ namespace ConsulRx.TestSupport
         public Task<QueryResult<Dictionary<string, string[]>>> Services(QueryOptions q, CancellationToken ct = new CancellationToken())
         {
             throw new System.NotImplementedException();
+        }
+
+        public Task<QueryResult<CatalogService[]>> NodesForMeshCapableService(string service, Filter filter, CancellationToken ct = new CancellationToken())
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<CatalogService[]>> NodesForMeshCapableService(string service, QueryOptions q, Filter filter,
+            CancellationToken ct = new CancellationToken())
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<CatalogService[]>> NodesForMeshCapableService(string service, CancellationToken ct = new CancellationToken())
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<NodeService>> ServicesForNode(string node, QueryOptions q, CancellationToken ct = new CancellationToken())
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<NodeService>> ServicesForNode(string node, CancellationToken ct = new CancellationToken())
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<GatewayService[]>> GatewayService(string gateway, QueryOptions q, CancellationToken ct = new CancellationToken())
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<GatewayService[]>> GatewayService(string gateway, CancellationToken ct = new CancellationToken())
+        {
+            throw new NotImplementedException();
         }
 
         public void Dispose()
@@ -352,8 +395,12 @@ namespace ConsulRx.TestSupport
         }
 
         public IACLEndpoint ACL { get; }
+        public IPolicyEndpoint Policy { get; }
+        public IRoleEndpoint Role { get; }
+        public ITokenEndpoint Token { get; }
         public IAgentEndpoint Agent { get; }
         public ICatalogEndpoint Catalog => this;
+        public IConfigurationEndpoint Configuration { get; }
         public IEventEndpoint Event { get; }
         public IHealthEndpoint Health { get; }
         public IKVEndpoint KV => this;
@@ -364,5 +411,6 @@ namespace ConsulRx.TestSupport
         public IPreparedQueryEndpoint PreparedQuery { get; }
         public ICoordinateEndpoint Coordinate { get; }
         public ISnapshotEndpoint Snapshot { get; }
+        public IDiscoveryChainEndpoint DiscoveryChain { get; }
     }
 }
